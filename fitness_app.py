@@ -17,7 +17,10 @@ st.set_page_config(page_title="Fitbit", layout="wide")
 @st.cache_resource
 def load_assets():
     assets = {}
-    folder = "pickles/"  # This is the directory on GitHub
+    # Use absolute path to ensure the server finds the folder
+    current_dir = os.path.dirname(__file__)
+    folder_path = os.path.join(current_dir, "pickles")
+    
     files = {
         "rf_base": "rf_reg.pkl", "rf_tuned": "rf_tuned.pkl",
         "xgb_base": "xgb_default.pkl", "xgb_tuned": "xgb_tuned.pkl",
@@ -35,12 +38,18 @@ def load_assets():
     }
     
     for key, filename in files.items():
-        if os.path.exists(filename):
-            with open(filename, 'rb') as f:
-                assets[key] = pickle.load(f)
+        full_path = os.path.join(folder_path, filename)
+        
+        if os.path.exists(full_path):
+            try:
+                with open(full_path, 'rb') as f:
+                    assets[key] = pickle.load(f)
+            except Exception as e:
+                st.sidebar.error(f"Error loading {filename}: {e}")
         else:
             assets[key] = None
-            st.sidebar.warning(f"File missing: {filename}")
+            # This will show you EXACTLY where the app is looking
+            st.sidebar.warning(f"Missing: {full_path}")
             
     return assets
 
