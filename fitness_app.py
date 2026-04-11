@@ -9,7 +9,7 @@ import os
 # -----------------------------------------------------------------------------
 # 1. PAGE CONFIGURATION
 # -----------------------------------------------------------------------------
-st.set_page_config(page_title="Gym-Genie AI Dashboard", page_icon="🏋️", layout="wide")
+st.set_page_config(page_title="Fitbit", layout="wide")
 
 # -----------------------------------------------------------------------------
 # 2. LOAD ASSETS
@@ -17,8 +17,8 @@ st.set_page_config(page_title="Gym-Genie AI Dashboard", page_icon="🏋️", lay
 @st.cache_resource
 def load_assets():
     assets = {}
-    folder = "pickles/"
-    files = {
+folder = "pickles/"  # This is the directory on GitHub
+files = {
         "rf_base": "rf_reg.pkl", "rf_tuned": "rf_tuned.pkl",
         "xgb_base": "xgb_default.pkl", "xgb_tuned": "xgb_tuned.pkl",
         "dt_base": "dt_reg.pkl", "dt_tuned": "dt_tuned.pkl",
