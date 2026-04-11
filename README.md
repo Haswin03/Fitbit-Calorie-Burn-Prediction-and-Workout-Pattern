@@ -23,7 +23,7 @@
 ### **1. Supervised Learning (Regression)**
 The goal was to achieve $R^2 \ge 0.80$ for mobile deployment suitability. The final **Tuned XGBoost** model significantly outperformed this target with laboratory-grade precision.
 
-| Model | $R^2$ Score | MAE (Error) | Status |
+| Model | $R^2$ Score | MAE (Error) |
 | :--- | :---: | :---: | :--- |
 | **XGBoost (Tuned)** | **0.9989** | **5.13 kcal** |
 | **Random Forest** | 0.9982 | 3.66 kcal |
@@ -33,7 +33,7 @@ The goal was to achieve $R^2 \ge 0.80$ for mobile deployment suitability. The fi
 ### **2. Unsupervised Learning (Clustering)**
 The system utilized **PCA (Principal Component Analysis)** to reduce 16-dimensional data into 2D "Fitness Universe" coordinates for intuitive user mapping.
 
-| Algorithm | Optimal Clusters | Silhouette Score | Status |
+| Algorithm | Optimal Clusters | Silhouette Score |
 | :--- | :---: | :---: | :--- |
 | **DBSCAN** | 2 + Outliers | **0.1718** |
 | **Hierarchical** | 2 | 0.1715 |
