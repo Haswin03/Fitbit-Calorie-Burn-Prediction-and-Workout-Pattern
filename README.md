@@ -56,7 +56,7 @@ The project is structured for production-grade modularity:
     ├── kmeans_final.pkl     # Clustering Engine
     └── scaler_supervised.pkl# Feature Normalization
 ```
-🛠️ Tech Stack  
+## 🛠️ Tech Stack  
 Language: Python 3.10+  
 Modeling: Scikit-Learn, XGBoost  
 Data Ops: Pandas, NumPy  
@@ -64,14 +64,14 @@ Visualization: Matplotlib, Seaborn, PCA
 Deployment: Streamlit Cloud  
 Persistence: Joblib / Pickle  
 
-💡 Key Insights & Methodology  
+## Key Insights & Methodology  
 Feature Engineering: Calculated BMI and Heart Rate Intensity ($HR_i$) to provide the models with deeper physiological context, drastically improving $R^2$ scores.  
 
 Model Persistence: Utilized a centralized `pickles/` directory to manage 17+ pre-trained models, ensuring sub-second inference times in production.  
 
 Dimensionality Reduction: Implemented PCA to visualize high-dimensional workout patterns, allowing users to see their "position" relative to 14,000+ other training sessions in a 2D space.  
 
-👨‍💻 Author  
+## 👨‍💻 Author  
 Ashwanth Ram  
 B.E. Computer Science and Engineering  
 Chennai, India  
