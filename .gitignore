@@ -1,0 +1,6 @@
+# Ignore data and local paths
+data/Fitbit_dataset.csv
+pickles/
+.ipynb_checkpoints/
+__pycache__/
+.env

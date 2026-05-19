@@ -6,18 +6,12 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import os
 
-# -----------------------------------------------------------------------------
-# 1. PAGE CONFIGURATION
-# -----------------------------------------------------------------------------
 st.set_page_config(page_title="Fitbit", layout="wide")
 
-# -----------------------------------------------------------------------------
-# 2. LOAD ASSETS
-# -----------------------------------------------------------------------------
+
 @st.cache_resource
 def load_assets():
     assets = {}
-    # Use absolute path to ensure the server finds the folder
     current_dir = os.path.dirname(__file__)
     folder_path = os.path.join(current_dir, "pickles")
     
@@ -55,17 +49,11 @@ def load_assets():
 
 assets = load_assets()
 
-# -----------------------------------------------------------------------------
-# 3. SIDEBAR & NAVIGATION
-# -----------------------------------------------------------------------------
 st.sidebar.title("Navigation")
 page = st.sidebar.radio("Go to", ["Home", "Calorie Predictor", "Segment Analyzer"])
 st.sidebar.markdown("---")
 st.sidebar.info("Developed by Ashwanth Ram D | B.E. CSE")
 
-# -----------------------------------------------------------------------------
-# 4. HOME PAGE
-# -----------------------------------------------------------------------------
 if page == "Home":
     st.title("Welcome to Fitbit : Calorie Prediction & Workout Clustering")
     st.markdown("""
@@ -94,13 +82,11 @@ if page == "Home":
     st.table(pd.DataFrame(unsupervised_data))
 
     st.info("""
-    **System Integrity Note:** Rigorously validated against industry benchmarks. 
-    With a peak R² of **0.9989**, the engine provides laboratory-grade prediction.
+    **System Integrity Note:** Rigorously validated With a peak R² of **0.9989**, the engine provides laboratory-grade prediction.
     """)
 
-# -----------------------------------------------------------------------------
-# 5. SUPERVISED LEARNING (CALORIE PREDICTOR)
-# -----------------------------------------------------------------------------
+# SUPERVISED LEARNING (CALORIE PREDICTOR)
+
 elif page == "Calorie Predictor":
     st.title("AI Calorie Predictor")
     col1, col2 = st.columns(2)
@@ -152,9 +138,8 @@ elif page == "Calorie Predictor":
             prediction = assets[model_key_map[model_choice]].predict(scaled_data)[0]
             st.success(f"### Estimated Burn: {prediction:.2f} kcal")
 
-# -----------------------------------------------------------------------------
-# 6. UNSUPERVISED LEARNING (SEGMENT ANALYZER)
-# -----------------------------------------------------------------------------
+
+# UNSUPERVISED LEARNING (SEGMENT ANALYZER)
 elif page == "Segment Analyzer":
     st.title("Workout Pattern & Segment Analyzer")
     
@@ -179,9 +164,7 @@ elif page == "Segment Analyzer":
         max_bpm = 220 - age 
         hr_i = avg_bpm / max_bpm
         
-        # NOTE: Ensure this list matches your Scaler's training order exactly
-        unsup_features = [age, 1 if gender=="Male" else 0, weight, height, max_bpm, avg_bpm, 70, duration, fat_pct, 2.0, 3, 
-                          {"Beginner":1, "Intermediate":2, "Expert":3}[exp_level], bmi, 3.5, hr_i, 3.5*hr_i]
+        unsup_features = [age, 1 if gender=="Male" else 0, weight, height, max_bpm, avg_bpm, 70, duration, fat_pct, 2.0, 3, {"Beginner":1, "Intermediate":2, "Expert":3}[exp_level], bmi, 3.5, hr_i, 3.5*hr_i]
 
         user_array = np.array([unsup_features])
         scaled_user = assets['scaler_unsup'].transform(user_array)
